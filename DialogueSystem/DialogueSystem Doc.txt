@@ -1,0 +1,68 @@
+DialogueManager Class
+Manages the display and interaction of dialogue in the game.
+
+Public Properties
+
+dialogueIsPlaying
+Type: bool
+Description: Indicates whether a dialogue is currently playing.
+
+canContinueToNextLine
+Type: bool
+Description: Determines if the player can continue to the next line of dialogue. Set to true when the current line of dialogue has finished displaying and choices are available.
+
+canSkip
+Type: bool
+Description: Determines if the player can skip the current line of dialogue. Set to true to enable skipping of dialogue lines.
+
+Public Methods
+GetInstance()
+Return Type: DialogueManager
+Description: Retrieves the instance of the DialogueManager.
+
+EnterDialogueMode(TextAsset inkJSON)
+Parameters:
+inkJSON: TextAsset - The Ink JSON file containing the dialogue.
+Description: Enters the dialogue mode and starts displaying the dialogue. It initializes the Ink story with the provided Ink JSON file and displays the first line of dialogue.
+
+ExitDialogueMode()
+Description: Exits the dialogue mode and stops displaying the dialogue. It disables the dialogue panel and resets the dialogue text.
+
+MakeChoice(int choiceIndex)
+Parameters:
+choiceIndex: int - The index of the selected choice.
+Description: Makes a choice in the current dialogue. It triggers the selected choice in the Ink story and proceeds to the next line of dialogue based on the chosen branch.
+
+Private Methods
+Start()
+Description: Initializes the DialogueManager. It sets the initial state of the dialogue panel, choices, and their corresponding text components.
+
+Update()
+Description: Updates the DialogueManager state. It listens for input events and handles the progression of the dialogue based on the player's actions.
+
+ContinueStory()
+Description: Continues the story and displays the next line of dialogue. It checks if there are more lines available in the Ink story and if so, triggers the typewriter effect to display the next line.
+
+HandleTags(List<string> currentTags)
+Parameters:
+currentTags: List<string> - The list of tags to handle.
+Description: Handles the parsing and processing of Ink tags. It looks for specific tags in the current line of dialogue and performs actions accordingly, such as updating the display name or changing the character portrait.
+
+DisplayChoices()
+Description: Displays the choices for the current line of dialogue. It enables the choices UI elements and sets their corresponding text based on the available choices in the Ink story.
+
+Typewriter(string line)
+Parameters:
+line: string - The line of dialogue to display.
+Description: Displays the dialogue text using a typewriter effect. It iterates over each character in the line and adds it to the dialogue text component with a delay, creating the typewriter effect.
+
+
+HideChoices()
+Description: Hides the choice buttons. It disables the choice UI elements to hide them from the screen.
+
+CanSkip()
+Description: Coroutine to enable the ability to skip the current line of dialogue. It allows the player to skip the typewriter effect and instantly display the full line of dialogue by pressing the designated input (e.g., spacebar).
+
+SelectFirstChoice()
+Description: Coroutine to select the first choice in the UI. It sets the currently selected UI element to the first choice button, ensuring that the player can immediately choose a choice using the keyboard or controller.
+
